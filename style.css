@@ -1,0 +1,19 @@
+html, body {
+    padding: 0px;
+    margin: 0px;
+    font-family: sans-serif;
+}
+
+.container {
+    width: 800px;
+    margin: auto;
+}
+
+svg {
+    background: #eee;
+    margin: 30px 10%;
+}
+
+circle {
+    opacity: 0.8;
+}
