@@ -1,4 +1,4 @@
-const margins = {t: 50, r: 50, b: 50, l: 50};
+const margins = {t: 100, r: 100, b: 100, l: 100};
 const SVGsize = {w: window.innerWidth*0.8, h: window.innerHeight*0.8};
 const size = {
     w: SVGsize.w - margins.l - margins.r,
@@ -19,7 +19,7 @@ d3.csv('data/population.csv')
     console.log(data[0]);
     data.forEach(parseData);
 
-    data.sort((a, b) => +a[2019] < +b[2019]);
+    data.sort((a, b) => +b[2019] - +a[2019]);
     data = data.slice(0, 40);
     console.log(data);
 
@@ -47,6 +47,18 @@ d3.csv('data/population.csv')
         .attr('transform', `translate(${size.w}, 0)`)
         .text(1960)
     draw();
+
+    let currYear = 1960;
+    let t = d3.interval(function(){
+        if (currYear >= 2019) {
+            t.stop();
+            return;
+        }
+        currYear++;
+        draw(currYear);
+    }, 1000); // execute a function at certain time interval
+
+
 });
 
 function parseData(d) {
